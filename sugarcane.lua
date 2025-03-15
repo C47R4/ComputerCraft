@@ -30,11 +30,14 @@ end
 
 function Program:Cycle()
     self.State = "Harvest"
+    self:ShowState()
     self:Harvest()
     os.sleep(6)
     self.State = "Plant"
+    self:ShowState()
     self:Plant()
     self.State = "Wait"
+    self:ShowState()
 end
 
 function Program:ShowState()
