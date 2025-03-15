@@ -6,7 +6,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = "1.1.0"
+    self.Version = "1.1.1"
 
     self.State = "Idle"
 
@@ -35,7 +35,7 @@ function Program:Work()
         write("Command> ")
         local input = read()
 
-        if Command:lower() == "go" then
+        if input:lower() == "go" then
             self.State = "Work"
             self:ShowState()
 
