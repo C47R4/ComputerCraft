@@ -1,5 +1,5 @@
 local monitor = peripheral.wrap("top")
-local x_size, y_size = monitor.getScale()
+local x_size, y_size = monitor.getSize()
 
 redstone.setOutput("bottom", true)
 
