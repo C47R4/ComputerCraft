@@ -6,7 +6,10 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = "1.1.1"
+    self.Version = "1.2.0"
+
+    self.Ended = relay.getInput("right")
+    self.Started = relay.getInput("top")
 
     self.State = "Idle"
 
@@ -29,6 +32,22 @@ function Program:Pulse()
     relay.setOutput("back",false)
 end
 
+function Program:EventListener()
+    while true do
+        os.pullEvent("redstone")
+
+        self.Ended = relay.getInput("right")
+        self.Started = relay.getInput("top")
+
+        if self.Ended then
+            print("ended")
+        elseif self.Started then 
+            print("started")
+        end
+
+    end
+end
+
 function Program:Work()
     while true do
         self:ShowState()
@@ -40,6 +59,7 @@ function Program:Work()
             self:ShowState()
 
             self:Pulse()
+            self.State = "Idle"
         end
 
         os.sleep(1)
