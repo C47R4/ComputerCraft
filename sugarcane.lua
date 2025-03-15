@@ -10,7 +10,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = "1.16.2"
+    self.Version = "1.16.3"
 
     self.WaitTime = 900
     self.TimeLeft = self.WaitTime
@@ -51,7 +51,7 @@ end
 function Program:ShowState()
     monitor.clear()
     if self.State == "Wait" then
-        monitor.setCursorPos(x_size - 28,2)
+        monitor.setCursorPos(x_size - 32,2)
         local MinutesTime = tostring(math.floor(self.TimeLeft / 60))
         local SecondsTime = self.TimeLeft - (MinutesTime * 60)
         local SecondsTime = SecondsTime < 10 and "0".. tostring(SecondsTime) or tostring(SecondsTime)
