@@ -13,7 +13,7 @@ end
 
 function Program:Plant()
     redstone.setOutput("bottom", false)
-    os.sleep(10)
+    os.sleep(6)
     redstone.setOutput("bottom", true)
 end
 
@@ -32,7 +32,7 @@ end
 function Program:Work()
     while true do
         self:Cycle()
-        os.sleep(10)
+        os.sleep(600)
     end
 end
 
