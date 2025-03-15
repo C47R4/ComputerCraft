@@ -8,12 +8,14 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
+    self.TimeLeft = 600
+
     return self
 end
 
 function Program:Plant()
     redstone.setOutput("bottom", false)
-    os.sleep(6)
+    os.sleep(5)
     redstone.setOutput("bottom", true)
 end
 
@@ -31,8 +33,14 @@ end
 
 function Program:Work()
     while true do
-        self:Cycle()
-        os.sleep(600)
+        monitor.setCursorPos(1,1)
+        monitor.write(tostring(self.TimeLeft))
+
+        if self.TimeLeft <= 0 then
+
+        end
+        os.sleep(1)
+        self.TimeLeft = self.TimeLeft - 1
     end
 end
 
