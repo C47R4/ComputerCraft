@@ -10,7 +10,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = 1.14
+    self.Version = 1.15
 
     self.WaitTime = 30
     self.TimeLeft = self.WaitTime
@@ -60,7 +60,7 @@ function Program:ShowState()
         monitor.setTextColor(colors.white)
 
         monitor.setCursorPos(x_size/10 * 1, y_size /5 *2)
-        monitor.write("[Start manual harvest]")
+        monitor.write("[Manually Start]")
     elseif self.State == "Harvest" then
         monitor.setCursorPos(x_size/2 - 7,y_size/2)
         monitor.write("Harvesting...")
@@ -74,7 +74,7 @@ function Program:EventListener()
     while true do 
         local event, side, x_touch, y_touch = os.pullEvent("monitor_touch")
 
-        if x_touch > (x_size/10 * 1) - 2 and x_touch < (x_size/10 * 1) + 22 + 2 and y_touch > (y_size /5 *2) - 2 and y_touch < (y_size /5 *2) + 2 then
+        if x_touch > (x_size/10 * 1) - 2 and x_touch < (x_size/10 * 1) + 15 + 2 and y_touch > (y_size /5 *2) - 2 and y_touch < (y_size /5 *2) + 2 then
             self:Cycle()
         end
 
@@ -85,7 +85,7 @@ end
 function Program:Work()
     print("Version: ".. self.Version)
     while true do
-        if self.inCycle == true then return end
+        if self.inCycle == true then goto cont end
         self:ShowState()
 
         if self.TimeLeft <= 0 then
@@ -93,6 +93,7 @@ function Program:Work()
         end
         os.sleep(1)
         self.TimeLeft = self.TimeLeft - 1
+        ::cont::
     end
 end
 
