@@ -6,7 +6,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = "1.2.0"
+    self.Version = "1.2.1"
 
     self.Ended = relay.getInput("right")
     self.Started = relay.getInput("top")
@@ -67,4 +67,7 @@ function Program:Work()
 end
 
 local Device = Program.new()
-Device:Work()
+parallel.waitForAll(
+    function() Device:Work() end,
+    function() Device:EventListener() end
+)
