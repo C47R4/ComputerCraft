@@ -6,7 +6,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = "1.3.0"
+    self.Version = "1.3.1"
 
     self.Ended = true
     self.Started = false
@@ -40,14 +40,14 @@ function Program:EventListener()
         local ended = relay.getInput("top")
         local started = relay.getInput("right")
 
-        if ended then
+        if ended == true then
             if self.Started then 
                 self.Ended = false
                 self.Started = false
                 self.Halfed = true
                 print("halfed")
             end
-        elseif Started then 
+        elseif started == true then 
             if self.Halfed then
                 self.Ended = true
                 self.Started = false
