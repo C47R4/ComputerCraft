@@ -8,7 +8,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.TimeLeft = 600
+    self.TimeLeft = 30
 
     return self
 end
@@ -37,7 +37,7 @@ function Program:Work()
         monitor.write(tostring(self.TimeLeft))
 
         if self.TimeLeft <= 0 then
-
+            self:Cycle()
         end
         os.sleep(1)
         self.TimeLeft = self.TimeLeft - 1
