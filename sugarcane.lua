@@ -34,6 +34,7 @@ end
 
 function Program:Work()
     while true do
+        monitor.clear()
         monitor.setCursorPos(x_size - 10,1)
         monitor.write("[",tostring(self.TimeLeft,"]"))
 
