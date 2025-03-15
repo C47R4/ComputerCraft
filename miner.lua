@@ -268,7 +268,7 @@ end
 
 function Program:Main()
     if self.Bond == nil then
-        self:StripMine(3)
+        self:StripMine(300)
         self:ReturnHome()
     else
         while true do
