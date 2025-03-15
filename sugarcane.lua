@@ -10,11 +10,13 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = 1.1
+    self.Version = 1.12
 
     self.WaitTime = 30
     self.TimeLeft = self.WaitTime
     self.State = "Wait"
+
+    self.inCycle = false
 
     return self
 end
@@ -32,6 +34,7 @@ function Program:Harvest()
 end
 
 function Program:Cycle()
+    self.inCycle = true
     self.State = "Harvest"
     self:ShowState()
     self:Harvest()
@@ -41,6 +44,8 @@ function Program:Cycle()
     self:Plant()
     os.sleep(6)
     self.State = "Wait"
+    self.TimeLeft = self.WaitTime
+    self.inCycle = false
 end
 
 function Program:ShowState()
@@ -51,6 +56,9 @@ function Program:ShowState()
         local SecondsTime = self.TimeLeft - (MinutesTime * 60)
         local SecondsTime = SecondsTime < 10 and "0".. tostring(SecondsTime) or tostring(SecondsTime)
         monitor.write("Time to auto harvest : [ ".. MinutesTime .. ":" .. SecondsTime.." ]")
+    
+        monitor.setCursorPos(x_size/5 * 1, y_size /5 *1)
+        monitor.write("[Start manual harvest]")
     elseif self.State == "Harvest" then
         monitor.setCursorPos(x_size/2 - 7,y_size/2)
         monitor.write("Harvesting...")
@@ -60,14 +68,24 @@ function Program:ShowState()
     end
 end
 
+function Program:EventListener()
+    while true do 
+        local event, side, x_touch, y_touch = os.pullEvent("monitor_touch")
+
+
+
+        os.sleep(0.1)
+    end
+end
+
 function Program:Work()
     print("Version: ".. self.Version)
     while true do
+        if self.inCycle == true then return end
         self:ShowState()
 
         if self.TimeLeft <= 0 then
             self:Cycle()
-            self.TimeLeft = self.WaitTime
         end
         os.sleep(1)
         self.TimeLeft = self.TimeLeft - 1
@@ -77,4 +95,7 @@ end
 
 local Sugracne = Program.new()
 
-Sugracne:Work()
+parallel.waitForAll(
+    function() Sugracne:Work() end,
+    function() Sugracne:EventListener() end
+)
