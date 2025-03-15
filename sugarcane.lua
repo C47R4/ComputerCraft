@@ -1,5 +1,5 @@
 local monitor = peripheral.wrap("top")
-monitor.setTestScale(0.75)
+monitor.setTextScale(0.75)
 local x_size, y_size = monitor.getSize()
 
 redstone.setOutput("bottom", true)
@@ -36,8 +36,11 @@ end
 function Program:Work()
     while true do
         monitor.clear()
-        monitor.setCursorPos(x_size - 10,2)
-        monitor.write("Time to auto harvest : [ "..tostring(self.TimeLeft).." ]")
+
+        monitor.setCursorPos(x_size - 30,2)
+        local MinutesTime = math.floor(self.TimeLeft / 60)
+        local SecondsTime = self.TimeLeft - MinutesTime
+        monitor.write("Time to auto harvest : [ "..tostring(MinutesTime) .. ":" .. tostring(SecondsTime).." ]")
 
         if self.TimeLeft <= 0 then
             self:Cycle()
