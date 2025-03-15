@@ -10,7 +10,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = 1.16.1
+    self.Version = "1.16.2"
 
     self.WaitTime = 900
     self.TimeLeft = self.WaitTime
