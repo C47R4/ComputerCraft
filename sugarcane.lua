@@ -11,6 +11,7 @@ function Program.new()
     local self = setmetatable({},Program)
 
     self.TimeLeft = 60
+    self.State = "Wait"
 
     return self
 end
@@ -28,19 +29,33 @@ function Program:Harvest()
 end
 
 function Program:Cycle()
+    self.State = "Harvest"
     self:Harvest()
     os.sleep(6)
+    self.State = "Plant"
     self:Plant()
+    self.State = "Wait"
+end
+
+function Program:ShowState()
+    monitor.clear()
+    if self.State == "Wait" then
+        monitor.setCursorPos(x_size - 30,2)
+        local MinutesTime = math.floor(self.TimeLeft / 60)
+        local SecondsTime = self.TimeLeft - (MinutesTime * 60)
+        monitor.write("Time to auto harvest : [ "..tostring(MinutesTime) .. ":" .. tostring(SecondsTime).." ]")
+    elseif self.State == "Harvest" then
+        monitor.setCursorPos(x_size/2 - 7,y_size/2)
+        monitor.write("Harvesting...")
+    elseif self.State == "Plant" then
+        monitor.setCursorPos(x_size/2 - 6,y_size/2)
+        monitor.write("Planting...")
+    end
 end
 
 function Program:Work()
     while true do
-        monitor.clear()
-
-        monitor.setCursorPos(x_size - 30,2)
-        local MinutesTime = math.floor(self.TimeLeft / 60)
-        local SecondsTime = self.TimeLeft - MinutesTime
-        monitor.write("Time to auto harvest : [ "..tostring(MinutesTime) .. ":" .. tostring(SecondsTime).." ]")
+        self:ShowState()
 
         if self.TimeLeft <= 0 then
             self:Cycle()
