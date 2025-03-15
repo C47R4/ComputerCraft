@@ -34,10 +34,11 @@ end
 function Program:Work()
     while true do
         monitor.setCursorPos(1,1)
-        monitor.write(tostring(self.TimeLeft) .. "sa")
+        monitor.write(tostring(self.TimeLeft))
 
         if self.TimeLeft <= 0 then
             self:Cycle()
+            self.TimeLeft = 15
         end
         os.sleep(1)
         self.TimeLeft = self.TimeLeft - 1
