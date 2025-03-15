@@ -10,7 +10,10 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.TimeLeft = 60
+    self.Version = 1.1
+
+    self.WaitTime = 30
+    self.TimeLeft = self.WaitTime
     self.State = "Wait"
 
     return self
@@ -36,8 +39,8 @@ function Program:Cycle()
     self.State = "Plant"
     self:ShowState()
     self:Plant()
+    os.sleep(6)
     self.State = "Wait"
-    self:ShowState()
 end
 
 function Program:ShowState()
@@ -58,12 +61,13 @@ function Program:ShowState()
 end
 
 function Program:Work()
+    print("Version: ".. self.Version)
     while true do
         self:ShowState()
 
         if self.TimeLeft <= 0 then
             self:Cycle()
-            self.TimeLeft = 60
+            self.TimeLeft = self.WaitTime
         end
         os.sleep(1)
         self.TimeLeft = self.TimeLeft - 1
