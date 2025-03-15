@@ -19,20 +19,20 @@ end
 
 function Program:Harvest()
     redstone.setOutput("back", true)
-    os.sleep(10)
+    os.sleep(6)
     redstone.setOutput("back", false)
 end
 
 function Program:Cycle()
     self:Harvest()
-    os.sleep(10)
+    os.sleep(6)
     self:Plant()
 end
 
 function Program:Work()
     while true do
         self:Cycle()
-        os.sleep(1)
+        os.sleep(10)
     end
 end
 
