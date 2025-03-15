@@ -10,7 +10,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = 1.13
+    self.Version = 1.14
 
     self.WaitTime = 30
     self.TimeLeft = self.WaitTime
@@ -74,7 +74,9 @@ function Program:EventListener()
     while true do 
         local event, side, x_touch, y_touch = os.pullEvent("monitor_touch")
 
-
+        if x_touch > (x_size/10 * 1) - 2 and x_touch < (x_size/10 * 1) + 22 + 2 and y_touch > (y_size /5 *2) - 2 and y_touch < (y_size /5 *2) + 2 then
+            self:Cycle()
+        end
 
         os.sleep(0.1)
     end
