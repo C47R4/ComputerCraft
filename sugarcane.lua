@@ -29,7 +29,7 @@ function Program:Cycle()
     self:Plant()
 end
 
-function Program:Run()
+function Program:Work()
     while true do
         self:Cycle()
         os.sleep(1)
@@ -39,4 +39,4 @@ end
 
 local Sugracne = Program.new()
 
-Sugracne:Run()
+Sugracne:Work()
