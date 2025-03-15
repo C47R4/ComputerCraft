@@ -1,4 +1,5 @@
 local monitor = peripheral.wrap("top")
+local x_size, y_size = monitor.getScale()
 
 redstone.setOutput("bottom", true)
 
@@ -33,8 +34,8 @@ end
 
 function Program:Work()
     while true do
-        monitor.setCursorPos(1,1)
-        monitor.write(tostring(self.TimeLeft))
+        monitor.setCursorPos(x_size - 10,1)
+        monitor.write("[",tostring(self.TimeLeft,"]"))
 
         if self.TimeLeft <= 0 then
             self:Cycle()
