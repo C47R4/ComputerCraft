@@ -285,9 +285,9 @@ end
 
 function Program:Start()
     parallel.waitForAll(
-        function() self:Main() end,
-        function() self:OrderMediator() end,
-        function() self:Updater() end
+        function() self:Main() end
+        --function() self:OrderMediator() end,
+        --function() self:Updater() end
     )
 end
 
