@@ -6,9 +6,9 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = "1.2.3"
+    self.Version = "1.3.0"
 
-    self.Ended = false
+    self.Ended = true
     self.Started = false
     self.Halfed = false
 
@@ -42,15 +42,21 @@ function Program:EventListener()
 
         if ended then
             if self.Started then 
+                self.Ended = false
+                self.Started = false
                 self.Halfed = true
                 print("halfed")
             end
         elseif Started then 
             if self.Halfed then
                 self.Ended = true
+                self.Started = false
+                self.Halfed = false
                 print("ended")
             else
+                self.Ended = false
                 self.Started = true
+                self.Halfed = false
                 print("started")
             end
         end
@@ -68,6 +74,11 @@ function Program:Work()
             self:ShowState()
 
             self:Pulse()
+
+            while self.Ended == false do
+                os.sleep(1)
+            end
+
             self.State = "Idle"
         end
 
