@@ -6,7 +6,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = "1.0.0"
+    self.Version = "1.1.0"
 
     self.State = "Idle"
 
@@ -15,6 +15,7 @@ end
 
 function Program:ShowState()
     shell.run("clear")
+    print("Version: ".. self.Version)
     if self.State == "Idle" then
         print("Run 'go' to start proccess")
     elseif self.State == "Work" then
@@ -34,7 +35,7 @@ function Program:Work()
         write("Command> ")
         local input = read()
 
-        if Command.lower() == "go" then
+        if Command:lower() == "go" then
             self.State = "Work"
             self:ShowState()
 
