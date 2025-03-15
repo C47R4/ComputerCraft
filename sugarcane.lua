@@ -1,4 +1,5 @@
 local monitor = peripheral.wrap("top")
+monitor.setTestSize(0.75)
 local x_size, y_size = monitor.getSize()
 
 redstone.setOutput("bottom", true)
@@ -9,7 +10,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.TimeLeft = 15
+    self.TimeLeft = 60
 
     return self
 end
@@ -35,12 +36,12 @@ end
 function Program:Work()
     while true do
         monitor.clear()
-        monitor.setCursorPos(x_size - 10,1)
-        monitor.write("[ "..tostring(self.TimeLeft).." ]")
+        monitor.setCursorPos(x_size - 10,2)
+        monitor.write("Time to auto harvest : [ "..tostring(self.TimeLeft).." ]")
 
         if self.TimeLeft <= 0 then
             self:Cycle()
-            self.TimeLeft = 15
+            self.TimeLeft = 60
         end
         os.sleep(1)
         self.TimeLeft = self.TimeLeft - 1
