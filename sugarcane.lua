@@ -10,7 +10,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = 1.12
+    self.Version = 1.13
 
     self.WaitTime = 30
     self.TimeLeft = self.WaitTime
@@ -55,9 +55,11 @@ function Program:ShowState()
         local MinutesTime = tostring(math.floor(self.TimeLeft / 60))
         local SecondsTime = self.TimeLeft - (MinutesTime * 60)
         local SecondsTime = SecondsTime < 10 and "0".. tostring(SecondsTime) or tostring(SecondsTime)
+        monitor.setTextColor(colors.gray)
         monitor.write("Time to auto harvest : [ ".. MinutesTime .. ":" .. SecondsTime.." ]")
-    
-        monitor.setCursorPos(x_size/5 * 1, y_size /5 *1)
+        monitor.setTextColor(colors.white)
+
+        monitor.setCursorPos(x_size/10 * 1, y_size /5 *2)
         monitor.write("[Start manual harvest]")
     elseif self.State == "Harvest" then
         monitor.setCursorPos(x_size/2 - 7,y_size/2)
