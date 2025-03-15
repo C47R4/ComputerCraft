@@ -10,7 +10,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.Version = 1.15
+    self.Version = 1.151
 
     self.WaitTime = 30
     self.TimeLeft = self.WaitTime
@@ -91,9 +91,9 @@ function Program:Work()
         if self.TimeLeft <= 0 then
             self:Cycle()
         end
-        os.sleep(1)
         self.TimeLeft = self.TimeLeft - 1
         ::cont::
+        os.sleep(1)
     end
 end
 
