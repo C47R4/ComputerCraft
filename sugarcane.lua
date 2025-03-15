@@ -3,6 +3,7 @@ local monitor = peripheral.find("monitor")
 redstone.setOutput("bottom", true)
 
 local Program = {}
+Program.__index = Program
 
 function Program.new()
     local self = setmetatable({},Program)
