@@ -8,7 +8,7 @@ Program.__index = Program
 function Program.new()
     local self = setmetatable({},Program)
 
-    self.TimeLeft = 30
+    self.TimeLeft = 15
 
     return self
 end
