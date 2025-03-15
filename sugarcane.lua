@@ -41,9 +41,10 @@ function Program:ShowState()
     monitor.clear()
     if self.State == "Wait" then
         monitor.setCursorPos(x_size - 30,2)
-        local MinutesTime = math.floor(self.TimeLeft / 60)
+        local MinutesTime = tostring(math.floor(self.TimeLeft / 60))
         local SecondsTime = self.TimeLeft - (MinutesTime * 60)
-        monitor.write("Time to auto harvest : [ "..tostring(MinutesTime) .. ":" .. tostring(SecondsTime).." ]")
+        local SecondsTime = SecondsTime < 10 and "0".. tostring(SecondsTime) or tostring(SecondsTime)
+        monitor.write("Time to auto harvest : [ ".. MinutesTime .. ":" .. SecondsTime.." ]")
     elseif self.State == "Harvest" then
         monitor.setCursorPos(x_size/2 - 7,y_size/2)
         monitor.write("Harvesting...")
