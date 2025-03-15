@@ -1,4 +1,4 @@
-local monitor = peripheral.find("monitor")
+local monitor = peripheral.wrap("top")
 
 redstone.setOutput("bottom", true)
 
