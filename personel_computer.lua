@@ -15,7 +15,7 @@ function ComputerLib.new()
     local self = setmetatable({},ComputerLib)
 
     self.Commands = {
-        {name = "storage", args{"info"}, description = "storage işleri cartcurt"}
+        {name = "storage", args = {"info"}, description = "storage işleri cartcurt"}
     }
 
     return self
