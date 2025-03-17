@@ -69,11 +69,18 @@ end
 function ComputerLib:EventListener()
     while true do
         local eventData = {os.pullEvent()}
-
         local eventName = eventData[1]
 
         if eventName == "rednet_message" then
-            print(eventData[2], eventData[3],eventData[4])
+            
+            if eventData[4] == "storage_data_ping" then
+                print("[]---[Storage Info]---[] \n")
+                for _, storage in pairs(eventData[3]) do
+                  print("      "..storage.name .. ":" , storage.value.."%")
+                end
+                print("[]--------------------[]")
+            end
+
         end
 
     end
