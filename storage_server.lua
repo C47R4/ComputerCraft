@@ -30,7 +30,7 @@ end
 function ServerLib:PrintInfo()
   print("[]---[Storage Info]---[] \n")
   for _, storage in pairs(self.storageList) do
-    print("      "..storage.name .. ":" , tostring(storage.value).."%")
+    print("      "..storage.name .. ":" , storage.value.."%")
   end
   print("[]--------------------[]")
 end
@@ -42,7 +42,7 @@ function ServerLib:EventListener()
     if prot == "storage_data_ping" then
       self:UpdateInfo()
       rednet.send(id,self.storageList,prot)
-      print(id,"wanted to know about storage data.")
+      print("[Server]",id,"wanted to know about storage data.")
     end
   end
 end
