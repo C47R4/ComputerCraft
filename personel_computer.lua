@@ -22,8 +22,8 @@ function ComputerLib.new()
 end
 
 function  ComputerLib:Main()
+    shell.run("clear")
     while true do
-        shell.run("clear")
         write("computer>")
         local input = read()
 
