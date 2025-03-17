@@ -34,21 +34,25 @@ function  ComputerLib:Main()
             if command == cmd.name then
                 if cmd.name == "storage" then
 
+                    local argsOkay = false
                     for _, commandarg in pairs(cmd.args) do
                         if args[1] == commandarg then
                             if args[1] == "info" then
                                 
+                                argsOkay = true
                                 rednet.broadcast("nigger","storage_data_ping")
 
                             end
                         end
                     end
 
-                    print("Usage: ", cmd.usage, "\nArgs: ")
-                    for _, commandarg in pairs(cmd.args) do
-                        print(commandarg)
+                    if not argsOkay then
+                        print("Usage: ", cmd.usage, "\nArgs: ")
+                        for _, commandarg in pairs(cmd.args) do
+                            print(commandarg)
+                        end 
                     end
-                    ::continue2::
+                    goto continue
                 end
             end
         end
