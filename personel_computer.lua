@@ -71,7 +71,9 @@ function ComputerLib:EventListener()
 
         local eventName = eventData[1]
 
-        print(eventName)
+        if eventName == "rednet_message" then
+            print(eventData[2], eventData[3])
+        end
 
     end
 end
