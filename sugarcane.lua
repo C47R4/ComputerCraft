@@ -12,7 +12,7 @@ function Program.new()
 
     self.Version = "1.16.3"
 
-    self.WaitTime = 900
+    self.WaitTime = 1800
     self.TimeLeft = self.WaitTime
     self.State = "Wait"
 
