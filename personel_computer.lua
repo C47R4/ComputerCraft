@@ -41,7 +41,7 @@ function  ComputerLib:Main()
                                 
                                 argsOkay = true
                                 rednet.broadcast("nigger","storage_data_ping")
-                                os.sleep(1)
+                                os.sleep(0.2)
                             end
                         end
                     end
