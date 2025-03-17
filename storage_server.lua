@@ -27,9 +27,9 @@ function ServerLib:UpdateInfo()
 end
 
 function ServerLib:PrintInfo()
-  print("[]---[Storage Info]---[]")
+  print("[]---[Storage Info]---[] \n")
   for _, storage in pairs(self.storageList) do
-    print(" |"..storage.name .. ":" , tostring(storage.value).."%          | ")
+    print("      "..storage.name .. ":" , tostring(storage.value).."%")
   end
   print("[]--------------------[]")
 end
