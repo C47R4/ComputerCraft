@@ -27,11 +27,11 @@ function ServerLib:UpdateInfo()
 end
 
 function ServerLib:PrintInfo()
-  print("[]---[Storage Info]---")
+  print("[]---[Storage Info]---[]")
   for _, storage in pairs(self.storageList) do
-    print(" |"..storage.name .. ":" , tostring(storage.value).."% | ")
+    print("|"..storage.name .. ":" , tostring(storage.value).."%            | ")
   end
-  print("[]--------------------")
+  print("[]--------------------[]")
 end
 
 local Server = ServerLib.new()
