@@ -29,7 +29,7 @@ end
 function ServerLib:PrintInfo()
   print("[]---[Storage Info]---[]")
   for _, storage in pairs(self.storageList) do
-    print("|"..storage.name .. ":" , tostring(storage.value).."%            | ")
+    print(" |"..storage.name .. ":" , tostring(storage.value).."%          | ")
   end
   print("[]--------------------[]")
 end
