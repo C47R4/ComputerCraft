@@ -67,7 +67,7 @@ end
 
 function ComputerLib:EventListener()
     while true do
-        local eventData = os.pullEvent()
+        local eventData = {os.pullEvent()}
 
         local eventName = eventData[1]
 
