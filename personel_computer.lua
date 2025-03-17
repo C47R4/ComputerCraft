@@ -29,6 +29,9 @@ function  ComputerLib:Main()
 
         local args = split(input," ")
         local command = table.remove(args,1)
+        for _, a in pairs(args) do
+            print(a)
+        end
 
         for _, cmd in pairs(self.Commands) do
             if command == cmd.name then
@@ -52,7 +55,7 @@ function  ComputerLib:Main()
                             print(commandarg)
                         end 
                     end
-                    
+
                     goto continue
                 end
             end
