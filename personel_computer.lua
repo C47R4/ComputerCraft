@@ -15,7 +15,7 @@ function ComputerLib.new()
     local self = setmetatable({},ComputerLib)
 
     self.Commands = {
-        {name = "storage", args = {"info"}, description = "storage işleri cartcurt"}
+        {name = "storage", args = {"info"}, usage = "storage <arg>"}
     }
 
     return self
@@ -27,23 +27,45 @@ function  ComputerLib:Main()
         write("computer>")
         local input = read()
 
+        local args = split(input," ")
+        local command = table.remove(args,1)
+
         for _, cmd in pairs(self.Commands) do
-            local args = split(input," ")
-            local command = table.remove(args,1)
             if command == cmd.name then
                 if cmd.name == "storage" then
-                    print("storag")
-                    goto continue
+
+                    for _, commandarg in pairs(cmd.args) do
+                        if args[1] == commandarg then
+                            if args[1] == "info" then
+                                
+                                rednet.broadcast("nigger","storage_data_ping")
+
+                            end
+                        end
+                    end
+
+                    print("Usage: ", cmd.usage, "\nArgs: ")
+                    for _, commandarg in pairs(cmd.args) do
+                        print(commandarg)
+                    end
+                    ::continue2::
                 end
             end
         end
-        print("command not found")
+        print("no such command as",command)
         ::continue::
     end
 end
 
 function ComputerLib:EventListener()
-    
+    while true do
+        local eventData = os.pullEvent()
+
+        local eventName = eventData[1]
+
+        print(eventName)
+
+    end
 end
 
 local Computer = ComputerLib.new()
