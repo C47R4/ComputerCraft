@@ -44,7 +44,7 @@ function  ComputerLib:Main()
                                 
                                 argsOkay = true
                                 rednet.broadcast("nigger","storage_data_ping")
-
+                                os.sleep(1)
                             end
                         end
                     end
@@ -53,7 +53,6 @@ function  ComputerLib:Main()
                         print("Usage: ", cmd.usage, "\nArgs: ")
                         for _, commandarg in pairs(cmd.args) do
                             print(commandarg)
-                            print("asss")
                         end 
                     end
 
